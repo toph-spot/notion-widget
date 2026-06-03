@@ -1,0 +1,26 @@
+<script defer src="https://insights.cargobase.com/app/embed.js"></script>
+<script>
+function defineMetabaseConfig(config) {
+  window.metabaseConfig = config;
+}
+</script>
+
+<script>
+  defineMetabaseConfig({
+    "theme": {
+      "preset": "light"
+    },
+    "isGuest": true,
+    "instanceUrl": "https://insights.cargobase.com"
+  });
+</script>
+
+<!--
+THIS IS THE EXAMPLE!
+NEVER HARDCODE THIS JWT TOKEN DIRECTLY IN YOUR HTML!
+
+Fetch the JWT token from your backend and programmatically pass it to the 'metabase-dashboard'.
+-->
+<metabase-dashboard 
+  token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXNvdXJjZSI6eyJkYXNoYm9hcmQiOjk2fSwicGFyYW1zIjp7InNoaXBwZXIiOlsiU1RNaWNyb2VsZWN0cm9uaWNzIl19LCJleHAiOjE5MzczODE0MTB9.vLUYXyb9DZnAvBfSh2r5tW2zWzQFoODE2Kr6-rfSX7A" 
+  with-title="false" with-downloads="false"></metabase-dashboard>
