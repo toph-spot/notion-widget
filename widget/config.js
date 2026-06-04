@@ -1,6 +1,7 @@
 function defineMetabaseConfig(config) {
   window.metabaseConfig = config;
 }
+
 defineMetabaseConfig({
   "theme": {
     "preset": "light"
