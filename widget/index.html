@@ -1,22 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script defer src="https://insights.cargobase.com/app/embed.js"></script>
-<script>
-function defineMetabaseConfig(config) {
-  window.metabaseConfig = config;
-}
-</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QBR Mini</title>
 
-<script>
-  defineMetabaseConfig({
-    "theme": {
-      "preset": "light"
-    },
-    "isGuest": true,
-    "instanceUrl": "https://insights.cargobase.com"
-  });
-</script>
+    <script src="config.js"></script>
+
+    <script defer src="https://insights.cargobase.com/app/embed.js"></script>    
 </head>
 <body>
 
@@ -27,27 +18,23 @@ function defineMetabaseConfig(config) {
     </metabase-dashboard>
 
     <script>
-        // 1. Get the "company" parameter from the URL bar
         const urlParams = new URLSearchParams(window.location.search);
         const companyParam = urlParams.get('company');
 
         if (!companyParam) {
-            console.error("No company specified in the URL. Please add '?company=name' to the link.");
+            console.error("No company specified in the URL.");
             document.body.innerHTML += "<p style='color:red; padding: 20px;'>Error: No company specified in the link.</p>";
         } else {
-            // 2. Fetch the JSON file containing all company tokens
             fetch('tokens.json')
                 .then(response => {
                     if (!response.ok) throw new Error('Failed to load tokens.json');
                     return response.json();
                 })
                 .then(tokens => {
-                    // Normalize the URL parameter to lowercase to avoid case-sensitivity bugs
                     const companyKey = companyParam.toLowerCase().trim();
                     const activeToken = tokens[companyKey];
 
                     if (activeToken) {
-                        // 3. Inject the token into the dashboard component
                         const dashboard = document.getElementById('my-dashboard');
                         dashboard.setAttribute('token', activeToken.trim());
                         console.log(`Successfully loaded dashboard for: ${companyKey}`);
