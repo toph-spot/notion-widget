@@ -7,5 +7,6 @@ defineMetabaseConfig({
     "preset": "light"
   },
   "isGuest": true,
-  "instanceUrl": "https://insights.cargobase.com"
+  "instanceUrl": "https://insights.cargobase.com",
+  "nonce": "z4nrVMyvtY" // Tells React it's safe to inject styles
 });
