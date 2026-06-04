@@ -4,21 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QBR Mini</title>
-    <!-- CargoBase / Metabase Embed Script -->
     <script defer src="https://insights.cargobase.com/app/embed.js"></script>    
-    <!-- Your External Configuration Script -->
     <script defer src="config.js"></script>
 </head>
 <body>
+
     <metabase-dashboard 
-        token="my-dashboard" 
+        id="my-dashboard" 
         with-title="false" 
         with-downloads="false">
     </metabase-dashboard>
+
     <script>
         // 1. Get the "company" parameter from the URL bar
         const urlParams = new URLSearchParams(window.location.search);
         const companyParam = urlParams.get('company');
+
         if (!companyParam) {
             console.error("No company specified in the URL. Please add '?company=name' to the link.");
             document.body.innerHTML += "<p style='color:red; padding: 20px;'>Error: No company specified in the link.</p>";
@@ -31,7 +32,7 @@
                 })
                 .then(tokens => {
                     // Normalize the URL parameter to lowercase to avoid case-sensitivity bugs
-                    const companyKey = companyParam.toLowerCase();
+                    const companyKey = companyParam.toLowerCase().trim();
                     const activeToken = tokens[companyKey];
 
                     if (activeToken) {
